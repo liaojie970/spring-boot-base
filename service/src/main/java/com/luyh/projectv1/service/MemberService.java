@@ -10,8 +10,7 @@ import org.springframework.stereotype.Service;
  */
 
 @Service
-public class MemberService implements IMemberService{
-
+public class MemberService implements IMemberService {
     @Autowired
     private IDaoMember daoMember;
 

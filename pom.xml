@@ -3,7 +3,6 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <groupId>com.luyh.projectv1</groupId>
     <artifactId>parent</artifactId>
     <version>1.0-SNAPSHOT</version>
@@ -14,12 +13,16 @@
         <version>1.3.3.RELEASE</version>
     </parent>
     <modules>
-
         <module>model</module>
         <module>dao</module>
         <module>service</module>
         <module>webapi</module>
     </modules>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.7</java.version>
+    </properties>
 
     <!--申明依赖关系-->
     <dependencies>
@@ -54,9 +57,31 @@
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
     </dependencies>
-
+    <build>
+        <pluginManagement>
+            <plugins>
+                <!-- 配置java版本 不配置的话默认父类配置的是1.6-->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <configuration>
+                        <source>${java.version}</source>
+                        <target>${java.version}</target>
+                        <encoding>UTF-8</encoding>
+                    </configuration>
+                </plugin>
+                <!-- 测试插件 -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <configuration>
+                        <skipTests>true</skipTests> <!--跳过测试-->
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
     <!--设置maven仓库-->
-
     <repositories>
         <repository>
             <id>spring-releases</id>
@@ -69,6 +94,4 @@
             <url>https://repo.spring.io/libs-release</url>
         </pluginRepository>
     </pluginRepositories>
-
-
 </project>
